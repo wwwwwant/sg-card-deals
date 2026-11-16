@@ -1,0 +1,14 @@
+{
+  "name": "sg-card-deals",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Daily static feed of Singapore credit-card dining promotions",
+  "scripts": {
+    "scrape": "node scraper/scrape.mjs",
+    "build": "node scraper/build.mjs"
+  },
+  "dependencies": {
+    "playwright": "^1.48.0"
+  }
+}

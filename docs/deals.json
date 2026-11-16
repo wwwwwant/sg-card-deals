@@ -1,0 +1,63 @@
+{
+  "generated_at": "2026-11-16T12:45:19.141Z",
+  "note": "Singapore credit-card dining promotions. Always confirm in the bank app / T&Cs before paying.",
+  "sources": [
+    {
+      "id": "sukiya-ocbc",
+      "status": "parsed",
+      "deals": 2
+    }
+  ],
+  "deals": [
+    {
+      "id": "sukiya-ocbc-weekday",
+      "merchant": "Suki-Ya",
+      "cuisine": "Japanese hotpot buffet",
+      "valid_from": "2026-02-01",
+      "valid_to": "2027-01-31",
+      "conditions": [
+        "must be made with an OCBC Card.",
+        "Valid for all OCBC Cards issued in Singapore, Malaysia, Indonesia, Hong Kong and Macau.",
+        "Valid for dine-in and takeaway (where applicable), but not for delivery.",
+        "For Suki-ya and Suki Suki Hotpot promotions: All diners at the table must order the premium buffet top-up to enjoy the promotion.",
+        "Minimum spend requirements exclude service change and prevailing government taxes (GST).",
+        "Not valid on eves of and on public holidays and other blackout dates and festivals as determined by the restaurant.",
+        "Not valid in conjunction with other offers, set lunches, discounts, privileges or vouchers including grab dine-out discounts or vouchers.",
+        "Only one redemption is allowed per bill per table. Splitting or combining of bills and/or tables is strictly not allowed."
+      ],
+      "booking": "https://www.suki-ya.com.sg",
+      "benefit": "30% off Premium Buffet Upgrade from Mon - Thu.",
+      "deal_type": "percent_off",
+      "days": "Mon–Thu",
+      "bank": "OCBC",
+      "source_type": "merchant_official",
+      "source_url": "https://www.suki-ya.com.sg/promotions/ocbc",
+      "verified_at": "2026-11-16T12:44:45.772Z"
+    },
+    {
+      "id": "sukiya-ocbc-weekend",
+      "merchant": "Suki-Ya",
+      "cuisine": "Japanese hotpot buffet",
+      "valid_from": "2026-02-01",
+      "valid_to": "2027-01-31",
+      "conditions": [
+        "must be made with an OCBC Card.",
+        "Valid for all OCBC Cards issued in Singapore, Malaysia, Indonesia, Hong Kong and Macau.",
+        "Valid for dine-in and takeaway (where applicable), but not for delivery.",
+        "For Suki-ya and Suki Suki Hotpot promotions: All diners at the table must order the premium buffet top-up to enjoy the promotion.",
+        "Minimum spend requirements exclude service change and prevailing government taxes (GST).",
+        "Not valid on eves of and on public holidays and other blackout dates and festivals as determined by the restaurant.",
+        "Not valid in conjunction with other offers, set lunches, discounts, privileges or vouchers including grab dine-out discounts or vouchers.",
+        "Only one redemption is allowed per bill per table. Splitting or combining of bills and/or tables is strictly not allowed."
+      ],
+      "booking": "https://www.suki-ya.com.sg",
+      "benefit": "$25 off total bill with purchase of 4 Premium Buffet from Fri - Sun.",
+      "deal_type": "amount_off",
+      "days": "Fri–Sun",
+      "bank": "OCBC",
+      "source_type": "merchant_official",
+      "source_url": "https://www.suki-ya.com.sg/promotions/ocbc",
+      "verified_at": "2026-11-16T12:44:45.772Z"
+    }
+  ]
+}

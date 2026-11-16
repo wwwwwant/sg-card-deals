@@ -1,0 +1,29 @@
+[
+  {
+    "id": "ocbc-buffets",
+    "bank": "OCBC",
+    "source_type": "bank_official",
+    "url": "https://www.ocbc.com/personal-banking/cards/card-promotions?main=foodandgroceries&featuredCategory=foodandgroceries&occasion=buffets",
+    "tos_checked": false,
+    "notes": "JS-rendered catalogue; plain fetch shows '0 promotions found'. Disabled 2026-11-16: www.ocbc.com is behind Incapsula bot protection (robots.txt returned a challenge; headless run got 0 chars). Do not bypass.",
+    "enabled": false
+  },
+  {
+    "id": "ocbc-dining",
+    "bank": "OCBC",
+    "source_type": "bank_official",
+    "url": "https://www.ocbc.com/personal-banking/cards/card-promotions?main=foodandgroceries",
+    "tos_checked": false,
+    "notes": "All food & groceries deals; may paginate or lazy-load. Disabled 2026-11-16: www.ocbc.com is behind Incapsula bot protection (robots.txt returned a challenge; headless run got 0 chars). Do not bypass.",
+    "enabled": false
+  },
+  {
+    "id": "sukiya-ocbc",
+    "bank": "OCBC",
+    "source_type": "merchant_official",
+    "url": "https://www.suki-ya.com.sg/promotions/ocbc",
+    "tos_checked": "2026-11-16: robots.txt (Squarespace default) allows /promotions/ for all agents.",
+    "notes": "Merchant page with the full OCBC terms.",
+    "enabled": true
+  }
+]

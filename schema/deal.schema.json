@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Deal",
+  "type": "object",
+  "required": ["id", "bank", "merchant", "benefit", "source_url", "source_type", "verified_at"],
+  "properties": {
+    "id": { "type": "string", "description": "Stable unique id, e.g. 'sukiya-ocbc-weekday'" },
+    "bank": { "type": "string", "examples": ["OCBC", "DBS", "UOB", "Citi", "HSBC", "Maybank", "MariBank"] },
+    "cards": { "type": "array", "items": { "type": "string" }, "description": "Eligible cards if restricted, e.g. ['OCBC VOYAGE']. Omit = all cards of the bank." },
+    "merchant": { "type": "string" },
+    "outlet": { "type": "string" },
+    "cuisine": { "type": "string" },
+    "benefit": { "type": "string", "description": "As stated on the source page" },
+    "deal_type": { "enum": ["1-for-1", "percent_off", "amount_off", "freebie", "other"] },
+    "days": { "type": "string", "description": "e.g. 'Mon–Thu', 'Sat–Sun dinner'" },
+    "valid_from": { "type": "string", "format": "date" },
+    "valid_to": { "type": "string", "format": "date" },
+    "conditions": { "type": "array", "items": { "type": "string" } },
+    "booking": { "type": "string" },
+    "source_url": { "type": "string", "format": "uri" },
+    "source_type": { "enum": ["bank_official", "merchant_official", "aggregator"] },
+    "verified_at": { "type": "string", "format": "date-time" }
+  }
+}

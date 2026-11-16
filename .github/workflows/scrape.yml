@@ -1,0 +1,35 @@
+name: scrape
+
+on:
+  # Daily schedule paused while we run locally and debug end-to-end. Re-enable later:
+  # schedule:
+  #   - cron: '17 22 * * *'   # 06:17 Singapore time, daily
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: scrape
+  cancel-in-progress: false
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm install
+      - run: npx playwright install --with-deps chromium
+      - run: npm run scrape
+      - run: npm run build
+      - name: Commit updated data
+        run: |
+          git config user.name "sg-card-deals bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add docs/deals.json raw/_run.json
+          git diff --cached --quiet || git commit -m "data: daily update $(date -u +%F)"
+          git push
