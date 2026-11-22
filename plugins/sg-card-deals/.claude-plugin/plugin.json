@@ -1,7 +1,7 @@
 {
   "name": "sg-card-deals",
   "displayName": "SG Card Deals",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Singapore credit-card dining picks: matches where you want to eat against current promotions on the cards you hold (OCBC, DBS/POSB, UOB, Citi, HSBC, Maybank, MariBank), using a free public deals feed plus live search, always with source links.",
   "author": {
     "name": "wwwwwant",
@@ -10,5 +10,15 @@
   "homepage": "https://github.com/wwwwwant/sg-card-deals",
   "repository": "https://github.com/wwwwwant/sg-card-deals",
   "license": "MIT",
-  "keywords": ["singapore", "credit-card", "dining", "promotions", "restaurants", "1-for-1", "buffet", "cashback"]
+  "keywords": [
+    "singapore",
+    "credit-card",
+    "dining",
+    "promotions",
+    "restaurants",
+    "1-for-1",
+    "buffet",
+    "cashback"
+  ],
+  "privacyPolicyUrl": "https://github.com/wwwwwant/sg-card-deals/blob/main/plugins/sg-card-deals/PRIVACY.md"
 }

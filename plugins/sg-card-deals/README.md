@@ -16,6 +16,8 @@ Example: *"I have an OCBC 365 card. Buffet near Orchard this Thursday night for 
 - Fetches the public feed above (a plain HTTPS GET to GitHub Pages, no user data in the request) and runs web searches/fetches through Claude's own tools.
 - Sends no personal data anywhere and stores nothing. The cards you mention stay in your conversation.
 
+Full details: [Privacy](PRIVACY.md).
+
 Promotions change; always confirm in your bank app or the T&Cs before paying. Estimates are not guaranteed savings.
 
 ## Install
