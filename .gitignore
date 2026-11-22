@@ -6,3 +6,4 @@ raw/*.links.json
 # Private snapshots (OCBC terms forbid republishing) — never commit
 skill/*/data/
 dist/
+private/

@@ -20,7 +20,16 @@ If several are missing, ask them together in ONE short question (use tappable ch
 
 ### 2a. Read the bundled snapshots and the public feed first
 
-1. **Bundled private snapshots** — read every `data/*.json` file inside this skill folder (e.g. `data/ocbc-snapshot.json`). They have the same deal shape as the feed below, plus `private: true` and a `coverage` note saying which part of the bank's catalogue was captured (e.g. OCBC buffets only). These are the owner's personal copies: use them to answer, cite the bank page in `source_url`, but never paste the whole file or offer to share it. If its `generated_at` is more than 14 days old, say the snapshot may be out of date. If a deal has `card_tiers_note`, the higher benefit applies only to those cards — match it against the user's card.
+1. **Bundled private snapshots** (`data/*.json` in this skill folder, e.g. `data/ocbc-snapshot.json` — OCBC's whole Food & Groceries catalogue, ~290 offers). They are large: **don't read them whole.** Query them with the bundled script, which already drops offers outside their dates or excluded weekdays:
+   ```
+   python3 scripts/find_deals.py --stats
+   python3 scripts/find_deals.py --date <YYYY-MM-DD> --bank OCBC --q "<words>" [--buffet] [--limit 15]
+   ```
+   Run it from this skill's folder. Use several words per query and try synonyms in a second query if the first is thin (e.g. `"hotpot steamboat suki shabu mala"`, `"buffet"` + `--buffet`, an area or mall like `"orchard ion paragon"`, a cuisine like `"japanese sushi ramen omakase"`). `--country` defaults to SG (the catalogue also lists some Malaysia/Indonesia offers). If code execution isn't available, search the file text for the merchant/cuisine words instead of reading it all.
+   - These are the owner's personal copies: use them to answer and cite `source_url`, but never paste a whole file or offer to share it.
+   - `--stats` shows each snapshot's `generated_at`; if it is more than 14 days old, say the snapshot may be out of date.
+   - `days` is only set when it limits the whole offer; still read `benefit`, `validity_text` and `conditions` for per-item day/time limits (e.g. "1-for-1 dinner buffet (Mon-Thu); 25% off (Fri-Sun)").
+   - `card_tiers_note`: the higher benefit is only for those cards. The `benefit` text is split by ` | ` per tier — pick the tier matching the user's card.
 2. **Public feed** — fetch **https://wwwwwant.github.io/sg-card-deals/deals.json**
 
 If both have the same merchant and benefit, show it once.
