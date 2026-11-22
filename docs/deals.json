@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-16T12:45:19.141Z",
+  "generated_at": "2026-11-22T08:16:08.001Z",
   "note": "Singapore credit-card dining promotions. Always confirm in the bank app / T&Cs before paying.",
   "sources": [
     {
@@ -32,7 +32,7 @@
       "bank": "OCBC",
       "source_type": "merchant_official",
       "source_url": "https://www.suki-ya.com.sg/promotions/ocbc",
-      "verified_at": "2026-11-16T12:44:45.772Z"
+      "verified_at": "2026-11-22T08:15:52.831Z"
     },
     {
       "id": "sukiya-ocbc-weekend",
@@ -57,7 +57,7 @@
       "bank": "OCBC",
       "source_type": "merchant_official",
       "source_url": "https://www.suki-ya.com.sg/promotions/ocbc",
-      "verified_at": "2026-11-16T12:44:45.772Z"
+      "verified_at": "2026-11-22T08:15:52.831Z"
     }
   ]
 }

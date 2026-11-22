@@ -20,6 +20,12 @@ so the assistant works on mobile without a custom backend.
 - Drop deals whose `valid_to` is in the past at build time.
 - Keep `docs/deals.json` small (only fields in the schema).
 
+## Status (2026-11-22)
+- Live feed: https://wwwwwant.github.io/sg-card-deals/deals.json (repo `wwwwwant/sg-card-deals`, Pages from `main` `/docs`). Built and pushed locally; the daily `schedule` in `scrape.yml` is commented out until we switch to Actions.
+- Public sources: only `sukiya-ocbc`. The `ocbc-*` sources are `enabled: false`: www.ocbc.com sits behind Incapsula bot protection, and OCBC's Conditions of Access forbid reproducing/republishing/mirroring site content without written permission. Do not bypass, and do not put OCBC catalogue content in `docs/` or anywhere committed.
+- OCBC is covered by a **private** snapshot instead: `skill/sg-card-dining/data/ocbc-snapshot.json` (gitignored via `skill/*/data/`), read in the owner's own Chrome and shipped only inside the personal skill zip (`dist/sg-card-dining.zip`, gitignored). Coverage: buffets only (28 offers). Refresh by hand; never commit it.
+- Skill source: `skill/sg-card-dining/SKILL.md`; installed locally via symlink at `~/.claude/skills/sg-card-dining`.
+
 ## Next tasks (start here)
 1. Run `npm install && npx playwright install chromium && npm run scrape`, then inspect `raw/ocbc-buffets.txt` and `raw/ocbc-dining.txt`.
 2. Write `scraper/parsers/ocbc-buffets.mjs` and `scraper/parsers/ocbc-dining.mjs` that turn the raw text/links into deals matching the schema (see `scraper/parsers/_example.mjs`). If the catalogue paginates or lazy-loads, extend `scrape.mjs` (e.g. click "Load more").
