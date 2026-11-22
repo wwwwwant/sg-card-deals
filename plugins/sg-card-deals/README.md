@@ -8,12 +8,12 @@ Example: *"I have an OCBC 365 card. Buffet near Orchard this Thursday night for 
 
 1. **Public deals feed** — `https://wwwwwant.github.io/sg-card-deals/deals.json`, a static JSON file built from official merchant and bank pages that allow it. Every deal carries its source link and the time it was checked. Coverage is small and growing.
 2. **Live web search** by Claude for anything the feed doesn't cover, preferring official bank and merchant pages and labelling anything else as unverified.
-3. **Optional private snapshots** — if you put your own `*.json` files in the skill's `data/` folder (same shape as the feed), the bundled script `scripts/find_deals.py` filters them by date, weekday, bank and keywords. None are shipped with this plugin.
+3. **Optional private snapshots** — if you add your own `*.json` files in a `data/` folder next to the skill (same shape as the feed), the skill will read them. None are shipped with this plugin.
 
 ## What it runs, sends and stores
 
-- Fetches the public feed above (a plain HTTPS GET to GitHub Pages) and runs web searches/fetches through Claude's own tools.
-- May run `scripts/find_deals.py` (Python standard library only) to read local files in `data/`. It makes no network requests.
+- The plugin contains instructions only (one `SKILL.md`): no scripts, hooks, servers or binaries.
+- Fetches the public feed above (a plain HTTPS GET to GitHub Pages, no user data in the request) and runs web searches/fetches through Claude's own tools.
 - Sends no personal data anywhere and stores nothing. The cards you mention stay in your conversation.
 
 Promotions change; always confirm in your bank app or the T&Cs before paying. Estimates are not guaranteed savings.
