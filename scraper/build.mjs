@@ -30,6 +30,7 @@ for (const s of sources.filter((s) => s.enabled !== false)) {
     source_type: d.source_type ?? s.source_type,
     source_url: d.source_url ?? s.url,
     verified_at: fetched.fetched_at,
+    _host: new URL(s.url).hostname,
   }));
   deals.push(...found);
   report.push({ id: s.id, status: 'parsed', deals: found.length });
@@ -38,8 +39,58 @@ for (const s of sources.filter((s) => s.enabled !== false)) {
 const manual = JSON.parse(await read('data/manual.json', '[]'));
 deals.push(...manual);
 
+// ---- Sanitize: the feed is read by other people's Claude, and its text comes from third-party pages.
+// Keep only schema fields, strip invisible/control characters, cap lengths, allow only https links on
+// the source's own domain, and drop any deal whose text looks like instructions or asks for secrets.
+const schema = JSON.parse(await read('schema/deal.schema.json', '{}'));
+const FIELDS = Object.keys(schema.properties ?? {});
+const ENUMS = { deal_type: schema.properties?.deal_type?.enum, source_type: schema.properties?.source_type?.enum };
+const SUSPICIOUS = /ignore (all |any )?(previous|prior|above|earlier) (instructions|messages)|system prompt|you are (an? |the )?(ai|assistant|claude|chatgpt)|\bassistant:|card number|\bcvv\b|\bcvc\b|one[- ]time (password|code|pin)|\botp\b|password|log ?in (to|with)|<\s*script|javascript:|data:text/i;
+const clean = (s, max) => {
+  const t = String(s)
+    .replace(/[\u0000-\u0008\u000b-\u001f\u007f-\u009f\u200b-\u200f\u2028-\u202e\u2060-\u206f\ufeff]/g, '')
+    .replace(/\s+/g, ' ')
+    .trim();
+  return t.length > max ? t.slice(0, max - 1).trimEnd() + '…' : t;
+};
+const httpsOn = (u, host) => {
+  try {
+    const url = new URL(u);
+    if (url.protocol !== 'https:') return null;
+    if (host && !(url.hostname === host || url.hostname.endsWith('.' + host.replace(/^www\./, '')) || url.hostname === host.replace(/^www\./, ''))) return null;
+    return url.href;
+  } catch { return null; }
+};
+const sanitize = (d) => {
+  const out = {};
+  for (const k of FIELDS) {
+    const v = d[k];
+    if (v === undefined || v === null || v === '') continue;
+    if (k === 'conditions' || k === 'cards') {
+      const arr = (Array.isArray(v) ? v : [v]).map((x) => clean(x, 300)).filter(Boolean).slice(0, 12);
+      if (arr.length) out[k] = arr;
+    } else if (k === 'source_url') {
+      const u = httpsOn(v, d._host); // parsed sources: must be on the source's own domain
+      if (!u) { console.warn(`skip ${d.id}: source_url not https on ${d._host ?? 'any host'}: ${v}`); return null; }
+      out[k] = u;
+    } else if (k === 'booking') {
+      const u = httpsOn(v);
+      if (u) out[k] = u; else console.warn(`drop booking for ${d.id}: not https: ${v}`);
+    } else if (k === 'valid_from' || k === 'valid_to') {
+      if (/^\d{4}-\d{2}-\d{2}$/.test(v)) out[k] = v;
+    } else if (ENUMS[k]) {
+      if (ENUMS[k].includes(v)) out[k] = v;
+    } else {
+      out[k] = clean(v, k === 'benefit' ? 300 : 200);
+    }
+  }
+  const text = JSON.stringify(out);
+  if (SUSPICIOUS.test(text)) { console.warn(`skip ${d.id}: text looks like instructions/secrets request`); return null; }
+  return out;
+};
+
 const REQUIRED = ['id', 'bank', 'merchant', 'benefit', 'source_url', 'source_type', 'verified_at'];
-const valid = deals.filter((d) => {
+const valid = deals.map(sanitize).filter(Boolean).filter((d) => {
   const missing = REQUIRED.filter((k) => !d[k]);
   if (missing.length) { console.warn(`skip ${d.id ?? '?'}: missing ${missing.join(', ')}`); return false; }
   if (d.valid_to && d.valid_to < today) return false; // expired

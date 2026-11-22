@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-22T08:16:08.001Z",
+  "generated_at": "2026-11-22T09:01:01.405Z",
   "note": "Singapore credit-card dining promotions. Always confirm in the bank app / T&Cs before paying.",
   "sources": [
     {
@@ -11,8 +11,12 @@
   "deals": [
     {
       "id": "sukiya-ocbc-weekday",
+      "bank": "OCBC",
       "merchant": "Suki-Ya",
       "cuisine": "Japanese hotpot buffet",
+      "benefit": "30% off Premium Buffet Upgrade from Mon - Thu.",
+      "deal_type": "percent_off",
+      "days": "Mon–Thu",
       "valid_from": "2026-02-01",
       "valid_to": "2027-01-31",
       "conditions": [
@@ -25,19 +29,19 @@
         "Not valid in conjunction with other offers, set lunches, discounts, privileges or vouchers including grab dine-out discounts or vouchers.",
         "Only one redemption is allowed per bill per table. Splitting or combining of bills and/or tables is strictly not allowed."
       ],
-      "booking": "https://www.suki-ya.com.sg",
-      "benefit": "30% off Premium Buffet Upgrade from Mon - Thu.",
-      "deal_type": "percent_off",
-      "days": "Mon–Thu",
-      "bank": "OCBC",
-      "source_type": "merchant_official",
+      "booking": "https://www.suki-ya.com.sg/",
       "source_url": "https://www.suki-ya.com.sg/promotions/ocbc",
+      "source_type": "merchant_official",
       "verified_at": "2026-11-22T08:15:52.831Z"
     },
     {
       "id": "sukiya-ocbc-weekend",
+      "bank": "OCBC",
       "merchant": "Suki-Ya",
       "cuisine": "Japanese hotpot buffet",
+      "benefit": "$25 off total bill with purchase of 4 Premium Buffet from Fri - Sun.",
+      "deal_type": "amount_off",
+      "days": "Fri–Sun",
       "valid_from": "2026-02-01",
       "valid_to": "2027-01-31",
       "conditions": [
@@ -50,13 +54,9 @@
         "Not valid in conjunction with other offers, set lunches, discounts, privileges or vouchers including grab dine-out discounts or vouchers.",
         "Only one redemption is allowed per bill per table. Splitting or combining of bills and/or tables is strictly not allowed."
       ],
-      "booking": "https://www.suki-ya.com.sg",
-      "benefit": "$25 off total bill with purchase of 4 Premium Buffet from Fri - Sun.",
-      "deal_type": "amount_off",
-      "days": "Fri–Sun",
-      "bank": "OCBC",
-      "source_type": "merchant_official",
+      "booking": "https://www.suki-ya.com.sg/",
       "source_url": "https://www.suki-ya.com.sg/promotions/ocbc",
+      "source_type": "merchant_official",
       "verified_at": "2026-11-22T08:15:52.831Z"
     }
   ]

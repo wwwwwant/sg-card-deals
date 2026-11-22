@@ -23,15 +23,13 @@ so the assistant works on mobile without a custom backend.
 ## Status (2026-11-22)
 - Live feed: https://wwwwwant.github.io/sg-card-deals/deals.json (repo `wwwwwant/sg-card-deals`, Pages from `main` `/docs`). Built and pushed locally; the daily `schedule` in `scrape.yml` is commented out until we switch to Actions.
 - Public sources: only `sukiya-ocbc`. The `ocbc-*` sources are `enabled: false`: www.ocbc.com sits behind Incapsula bot protection, and OCBC's Conditions of Access forbid reproducing/republishing/mirroring site content without written permission. Do not bypass, and do not put OCBC catalogue content in `docs/` or anywhere committed.
-- OCBC is covered by a **private** snapshot instead: `private/skill-data/ocbc-snapshot.json` (gitignored), shipped only inside the personal skill built by `tools/build_personal_skill.sh` → `dist/sg-card-dining/` + `dist/sg-card-dining.zip` (gitignored). Coverage: OCBC Food & Groceries catalogue, 291 offers (2026-11-22). Never commit it.
-  - Refresh: in the owner's own Chrome, page through `card-promotions?main=foodandgroceries&p=1..N`; each list page holds the hidden detail panels (`.merchant-item.single-card-promotion`) for its 12 offers. Accumulate per-page extracts in the tab's sessionStorage, download one JSON (ask the owner first), move it to `private/ocbc-raw/` (gitignored), then `python3 -I tools/ocbc_snapshot.py private/ocbc-raw/<file>.json private/skill-data/ocbc-snapshot.json` and `tools/build_personal_skill.sh`. If a CAPTCHA/challenge appears, stop and hand over to the owner.
+- Sources whose terms forbid republishing are never part of the public feed. The owner keeps personal-use data for those locally under `private/` (gitignored, see `private/NOTES.md` on the owner's machine); `tools/build_personal_skill.sh` bundles `private/skill-data/*.json` into the owner's own skill (`dist/`, gitignored). Never commit anything from `private/` or `dist/`.
 - Plugin (public): `plugins/sg-card-deals/` = plugin.json, icon, README, LICENSE, `skills/sg-card-dining/SKILL.md` **only**. The Claude directory rejects scripts/programs from unverified orgs, so `find_deals.py` lives in `tools/` and goes only into the personal build. Self-hosted marketplace: `.claude-plugin/marketplace.json` (`sg-card-deals-marketplace`). Validate with `claude plugin validate --strict ./plugins/sg-card-deals`; bump `version` in both manifests on each release.
 - Personal skill installed locally via symlink `~/.claude/skills/sg-card-dining` → `dist/sg-card-dining` (rebuild with `tools/build_personal_skill.sh` after editing SKILL.md or data).
 
+## Feed safety (build.mjs)
+The feed is read by other people's Claude. `build.mjs` keeps only schema fields, strips control/zero-width characters, caps lengths, requires `https` links (`source_url` on the source's own domain), and drops any deal whose text looks like instructions or asks for card numbers/OTP/passwords. The skill also treats all fetched text as untrusted data. Keep both in place.
+
 ## Next tasks (start here)
-1. Run `npm install && npx playwright install chromium && npm run scrape`, then inspect `raw/ocbc-buffets.txt` and `raw/ocbc-dining.txt`.
-2. Write `scraper/parsers/ocbc-buffets.mjs` and `scraper/parsers/ocbc-dining.mjs` that turn the raw text/links into deals matching the schema (see `scraper/parsers/_example.mjs`). If the catalogue paginates or lazy-loads, extend `scrape.mjs` (e.g. click "Load more").
-3. Add merchant pages that publish bank deals (e.g. `suki-ya.com.sg/promotions/ocbc`) and parsers for them.
-4. Add other banks (DBS/POSB, UOB, Citi, HSBC, Maybank, MariBank) one at a time.
-5. Push to a public GitHub repo, enable Pages (Settings → Pages → Deploy from branch → `main` / `docs`), run the workflow once manually.
-6. Put the Pages URL of `deals.json` into the Claude skill's Step 2 as the first data source.
+1. Add bank pages whose terms allow it, and merchant pages that publish bank deals (e.g. `suki-ya.com.sg/promotions/ocbc`), one source at a time with a parser in `scraper/parsers/<id>.mjs`.
+2. Before re-enabling the daily schedule: pin actions to commit SHAs, use `npm ci`, keep `permissions` minimal.
