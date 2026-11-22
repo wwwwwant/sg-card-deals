@@ -18,9 +18,12 @@ If several are missing, ask them together in ONE short question (use tappable ch
 
 ## Step 2 — Pull current promotions
 
-### 2a. Read the feed first
+### 2a. Read the bundled snapshots and the public feed first
 
-Fetch: **https://__GITHUB_USER__.github.io/sg-card-deals/deals.json**
+1. **Bundled private snapshots** — read every `data/*.json` file inside this skill folder (e.g. `data/ocbc-snapshot.json`). They have the same deal shape as the feed below, plus `private: true` and a `coverage` note saying which part of the bank's catalogue was captured (e.g. OCBC buffets only). These are the owner's personal copies: use them to answer, cite the bank page in `source_url`, but never paste the whole file or offer to share it. If its `generated_at` is more than 14 days old, say the snapshot may be out of date. If a deal has `card_tiers_note`, the higher benefit applies only to those cards — match it against the user's card.
+2. **Public feed** — fetch **https://wwwwwant.github.io/sg-card-deals/deals.json**
+
+If both have the same merchant and benefit, show it once.
 
 It looks like `{ generated_at, sources: [...], deals: [...] }`. Each deal has `bank`, `merchant`, `benefit` (verbatim from the source page), and optionally `cards`, `outlet`, `cuisine`, `deal_type`, `days`, `valid_from`, `valid_to`, `conditions`, `booking`, plus `source_url`, `source_type`, `verified_at`.
 

@@ -2,3 +2,7 @@ node_modules/
 raw/*.txt
 raw/*.links.json
 .DS_Store
+
+# Private snapshots (OCBC terms forbid republishing) — never commit
+skill/*/data/
+dist/
