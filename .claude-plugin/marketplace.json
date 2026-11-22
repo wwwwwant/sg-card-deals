@@ -1,0 +1,18 @@
+{
+  "name": "sg-card-deals-marketplace",
+  "description": "Singapore credit-card dining promotion tools for Claude.",
+  "owner": {
+    "name": "wwwwwant",
+    "url": "https://github.com/wwwwwant"
+  },
+  "plugins": [
+    {
+      "name": "sg-card-deals",
+      "source": "./plugins/sg-card-deals",
+      "description": "Restaurant picks matched to current promotions on the Singapore credit cards you hold, with source links.",
+      "version": "0.1.0",
+      "category": "lifestyle",
+      "tags": ["singapore", "credit-card", "dining", "promotions"]
+    }
+  ]
+}

@@ -18,15 +18,15 @@ If several are missing, ask them together in ONE short question (use tappable ch
 
 ## Step 2 — Pull current promotions
 
-### 2a. Read the bundled snapshots and the public feed first
+### 2a. Read the local snapshots (if any) and the public feed first
 
-1. **Bundled private snapshots** (`data/*.json` in this skill folder, e.g. `data/ocbc-snapshot.json` — OCBC's whole Food & Groceries catalogue, ~290 offers). They are large: **don't read them whole.** Query them with the bundled script, which already drops offers outside their dates or excluded weekdays:
+1. **Local snapshots — optional.** This skill ships without data. If its `data/` folder holds `*.json` files the user added themselves (same deal shape as the feed, plus `private: true` and a `coverage` note), query them; if `data/` is missing or empty, skip to the public feed. Snapshots can be large (hundreds of offers): **don't read them whole.** Query them with the bundled script, which already drops offers outside their dates or excluded weekdays:
    ```
    python3 scripts/find_deals.py --stats
    python3 scripts/find_deals.py --date <YYYY-MM-DD> --bank OCBC --q "<words>" [--buffet] [--limit 15]
    ```
-   Run it from this skill's folder. Use several words per query and try synonyms in a second query if the first is thin (e.g. `"hotpot steamboat suki shabu mala"`, `"buffet"` + `--buffet`, an area or mall like `"orchard ion paragon"`, a cuisine like `"japanese sushi ramen omakase"`). `--country` defaults to SG (the catalogue also lists some Malaysia/Indonesia offers). If code execution isn't available, search the file text for the merchant/cuisine words instead of reading it all.
-   - These are the owner's personal copies: use them to answer and cite `source_url`, but never paste a whole file or offer to share it.
+   Run it from this skill's folder. Use several words per query and try synonyms in a second query if the first is thin (e.g. `"hotpot steamboat suki shabu mala"`, `"buffet"` + `--buffet`, an area or mall like `"orchard ion paragon"`, a cuisine like `"japanese sushi ramen omakase"`). `--country` defaults to SG (bank catalogues also list some Malaysia/Indonesia offers). If code execution isn't available, search the file text for the merchant/cuisine words instead of reading it all.
+   - These are the user's personal copies: use them to answer and cite `source_url`, but never paste a whole file or offer to share it.
    - `--stats` shows each snapshot's `generated_at`; if it is more than 14 days old, say the snapshot may be out of date.
    - `days` is only set when it limits the whole offer; still read `benefit`, `validity_text` and `conditions` for per-item day/time limits (e.g. "1-for-1 dinner buffet (Mon-Thu); 25% off (Fri-Sun)").
    - `card_tiers_note`: the higher benefit is only for those cards. The `benefit` text is split by ` | ` per tier — pick the tier matching the user's card.

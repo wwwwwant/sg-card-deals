@@ -4,6 +4,6 @@ raw/*.links.json
 .DS_Store
 
 # Private snapshots (OCBC terms forbid republishing) — never commit
-skill/*/data/
+plugins/*/skills/*/data/
 dist/
 private/
