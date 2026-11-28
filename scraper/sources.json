@@ -25,5 +25,14 @@
     "tos_checked": "2026-11-16: robots.txt (Squarespace default) allows /promotions/ for all agents.",
     "notes": "Merchant page with the full OCBC terms.",
     "enabled": true
+  },
+  {
+    "id": "sukiya-citi",
+    "bank": "Citi",
+    "source_type": "merchant_official",
+    "url": "https://www.suki-ya.com.sg/promotions/citibank-promo",
+    "enabled": true,
+    "tos_checked": "2026-11-28: robots.txt (Squarespace default) allows /promotions/ for all agents; merchant's own page.",
+    "notes": "Merchant page with the full Citi terms."
   }
 ]

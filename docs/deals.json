@@ -1,9 +1,14 @@
 {
-  "generated_at": "2026-11-22T09:01:01.405Z",
+  "generated_at": "2026-11-28T03:33:57.749Z",
   "note": "Singapore credit-card dining promotions. Always confirm in the bank app / T&Cs before paying.",
   "sources": [
     {
       "id": "sukiya-ocbc",
+      "status": "parsed",
+      "deals": 2
+    },
+    {
+      "id": "sukiya-citi",
       "status": "parsed",
       "deals": 2
     }
@@ -29,10 +34,10 @@
         "Not valid in conjunction with other offers, set lunches, discounts, privileges or vouchers including grab dine-out discounts or vouchers.",
         "Only one redemption is allowed per bill per table. Splitting or combining of bills and/or tables is strictly not allowed."
       ],
-      "booking": "https://www.suki-ya.com.sg/",
+      "booking": "https://www.suki-ya.com.sg/reservations",
       "source_url": "https://www.suki-ya.com.sg/promotions/ocbc",
       "source_type": "merchant_official",
-      "verified_at": "2026-11-22T08:15:52.831Z"
+      "verified_at": "2026-11-28T03:33:29.980Z"
     },
     {
       "id": "sukiya-ocbc-weekend",
@@ -54,10 +59,58 @@
         "Not valid in conjunction with other offers, set lunches, discounts, privileges or vouchers including grab dine-out discounts or vouchers.",
         "Only one redemption is allowed per bill per table. Splitting or combining of bills and/or tables is strictly not allowed."
       ],
-      "booking": "https://www.suki-ya.com.sg/",
+      "booking": "https://www.suki-ya.com.sg/reservations",
       "source_url": "https://www.suki-ya.com.sg/promotions/ocbc",
       "source_type": "merchant_official",
-      "verified_at": "2026-11-22T08:15:52.831Z"
+      "verified_at": "2026-11-28T03:33:29.980Z"
+    },
+    {
+      "id": "sukiya-citi-weekday",
+      "bank": "Citi",
+      "merchant": "Suki-Ya",
+      "cuisine": "Japanese hotpot buffet",
+      "benefit": "30% off Premium Buffet Upgrade from Mon - Thu.",
+      "deal_type": "percent_off",
+      "days": "Mon–Thu",
+      "valid_from": "2026-01-02",
+      "valid_to": "2026-12-30",
+      "conditions": [
+        "Payment must be charged to a Citi Credit/Debit Card.",
+        "Valid for dine-in and takeaway (where applicable), but not for delivery.",
+        "All diners at the table must order the premium buffet top-up to enjoy the promotion.",
+        "Minimum spend requirements exclude service change and prevailing government taxes (GST).",
+        "Not valid in conjunction with other offers, discounts, privileges or vouchers.",
+        "Not valid on eves of and on public holidays and other blackout dates and festivals as determined by the restaurant.",
+        "Only one redemption is allowed per bill per table. Splitting or combining of bills and/or tables is strictly not allowed."
+      ],
+      "booking": "https://www.suki-ya.com.sg/reservations",
+      "source_url": "https://www.suki-ya.com.sg/promotions/citibank-promo",
+      "source_type": "merchant_official",
+      "verified_at": "2026-11-28T03:33:44.764Z"
+    },
+    {
+      "id": "sukiya-citi-weekend",
+      "bank": "Citi",
+      "merchant": "Suki-Ya",
+      "cuisine": "Japanese hotpot buffet",
+      "benefit": "1 Complimentary Premium Buffet Upgrade with every 3 Premium Buffet Purchased from Fri - Sun.",
+      "deal_type": "freebie",
+      "days": "Fri–Sun",
+      "valid_from": "2026-01-02",
+      "valid_to": "2026-12-30",
+      "conditions": [
+        "Payment must be charged to a Citi Credit/Debit Card.",
+        "Valid for dine-in and takeaway (where applicable), but not for delivery.",
+        "All diners at the table must order the premium buffet top-up to enjoy the promotion.",
+        "Minimum spend requirements exclude service change and prevailing government taxes (GST).",
+        "Not valid in conjunction with other offers, discounts, privileges or vouchers.",
+        "Not valid on eves of and on public holidays and other blackout dates and festivals as determined by the restaurant.",
+        "Only one redemption is allowed per bill per table. Splitting or combining of bills and/or tables is strictly not allowed."
+      ],
+      "booking": "https://www.suki-ya.com.sg/reservations",
+      "source_url": "https://www.suki-ya.com.sg/promotions/citibank-promo",
+      "source_type": "merchant_official",
+      "verified_at": "2026-11-28T03:33:44.764Z"
     }
   ]
 }
